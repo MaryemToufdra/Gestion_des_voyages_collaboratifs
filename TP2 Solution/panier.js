@@ -1,11 +1,13 @@
 // Fonction pour charger les produits depuis IndexedDB
 function loadProductsFromCart() {
-    let request = indexedDB.open('yourDatabase', 1); // Ouvrir la base de données IndexedDB
 
+    let request = indexedDB.open('CoffeeShopDB', 1); // Ouvrir la base de données IndexedDB
+ 
     request.onsuccess = function(event) {
-        let db = event.target.result;
-        let transaction = db.transaction(['cart'], 'readonly');
+        let db = request.result;
+        let transaction = db.transaction('cart' ,'readwrite');
         let cartStore = transaction.objectStore('cart');
+
         let getAllRequest = cartStore.getAll(); // Récupérer tous les produits du panier
 
         getAllRequest.onsuccess = function() {
@@ -25,6 +27,7 @@ function loadProductsFromCart() {
 
 // Fonction pour afficher les produits du panier
 function displayCartItem(pr) {
+    
     const cartContainer = document.getElementById('cart-items');
     cartContainer.innerHTML = ''; // Vider le contenu actuel
 

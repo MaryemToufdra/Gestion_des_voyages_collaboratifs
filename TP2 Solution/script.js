@@ -2,20 +2,21 @@
 document.addEventListener('onload', getProducts());
 
 function openDB() { 
+
     const dbRequest = indexedDB.open("CoffeeShopDB", 1); 
     dbRequest.onupgradeneeded = (event) => { 
-    const db = event.target.result; 
-    if (!db.objectStoreNames.contains("products")) { 
-    db.createObjectStore("products", { keyPath: "id" }); 
-    } 
-    if (!db.objectStoreNames.contains("cart")) { 
-    db.createObjectStore("cart", { keyPath: "id" }); 
-    } 
-    }; 
-    dbRequest.onerror = (event) => {
-        console.error("Erreur lors de l'ouverture de la base de données:", event.target.errorCode);
-    };
-    return dbRequest; 
+        const db = event.target.result; 
+        if (!db.objectStoreNames.contains("products")) { 
+        db.createObjectStore("products", { keyPath: "id" }); 
+        } 
+        if (!db.objectStoreNames.contains("cart")) { 
+        db.createObjectStore("cart", { keyPath: "id" }); 
+        } 
+        }; 
+        dbRequest.onerror = (event) => {
+            console.error("Erreur lors de l'ouverture de la base de données:", event.target.errorCode);
+        };
+        return dbRequest; 
     }
 
     function addProductsToDB(products) {
@@ -245,7 +246,6 @@ function filterProducts() {
     );
     displayProducts(filteredProducts);
 }
-
 // Écouteur d'événement pour le champ de recherche
 document.getElementById('search-input').addEventListener('input', filterProducts);
 document.getElementById('grid-view').addEventListener('click', setGridView);
