@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Panier</title>
+    <link rel="stylesheet" href="style.css"> <!-- Assurez-vous que ce fichier contient le style du panier -->
+</head>
+<body>
+
+    <h1>Terres de café</h1>
+    <a href="shop.html">retour aux produits</a>
+    <table border="1" id="cart-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="cart-items">
+            <!-- Les articles du panier seront injectés ici par JavaScript -->
+        </tbody>
+    </table>
+
+    <script src="panier.js"></script>
+    <script>
+        // Charger les produits du panier lorsque la page est prête
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProductsFromCart();
+        });
+    </script>
+
+</body>
+</html>
